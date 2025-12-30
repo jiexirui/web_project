@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserService2Test {
     private UserService userService;
-
     @BeforeEach
     void create() {
         userService = new UserService();

@@ -7,11 +7,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="maven-project02" />
+        <module name="springboot_web" />
+        <module name="Day06_servlet" />
         <module name="maven-projectA" />
+        <module name="springboot_web_demo" />
         <module name="Day04_maven_demo01" />
         <module name="maven-projectB" />
         <module name="maven-projectC" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="tlias_web_managent" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboot_web" options="-parameters" />
+      <module name="springboot_web_demo" options="-parameters" />
+      <module name="tlias_web_managent" options="-parameters" />
+    </option>
   </component>
 </project>
