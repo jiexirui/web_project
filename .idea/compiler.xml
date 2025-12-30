@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="maven-project02" />
         <module name="springboot_web" />
+        <module name="tlias_web_managent" />
         <module name="Day06_servlet" />
         <module name="maven-projectA" />
         <module name="springboot_web_demo" />
@@ -17,7 +18,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="tlias_web_managent" target="17" />
+      <module name="tlias_web_managent_Demo" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -25,6 +26,7 @@
       <module name="springboot_web" options="-parameters" />
       <module name="springboot_web_demo" options="-parameters" />
       <module name="tlias_web_managent" options="-parameters" />
+      <module name="tlias_web_managent_Demo" options="-parameters" />
     </option>
   </component>
 </project>
