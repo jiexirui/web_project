@@ -12,9 +12,23 @@
         <option value="$PROJECT_DIR$/Day06_servlet/pom.xml" />
         <option value="$PROJECT_DIR$/springboot_web/pom.xml" />
         <option value="$PROJECT_DIR$/springboot_web_demo/pom.xml" />
-        <option value="$PROJECT_DIR$/tlias_web_managent/pom.xml" />
         <option value="$PROJECT_DIR$/tlias_web_managent1/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-ioc-homework/pom.xml" />
+        <option value="$PROJECT_DIR$/jdbc_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot_mybatis_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/day09_word/pom.xml" />
+        <option value="$PROJECT_DIR$/day09word/pom.xml" />
+        <option value="$PROJECT_DIR$/jdbc-zy/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-mybatis-homework/pom.xml" />
+        <option value="$PROJECT_DIR$/tlias_web_managent/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/day09_word/pom.xml" />
+        <option value="$PROJECT_DIR$/jdbc-zy/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-ioc-homework/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
