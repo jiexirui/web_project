@@ -21,4 +21,27 @@ public class DeptServiceImpl implements DeptService {
     public List<Dept> queryDeptList() {
         return deptMapper.findAll();
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        deptMapper.deleteById(id);
+    }
+
+    @Override
+    public void save(Dept dept) {
+        dept.setUpdateTime(LocalDateTime.now());//设置更新时间
+        dept.setCreateTime(LocalDateTime.now());//设置创建时间
+        deptMapper.save(dept);
+    }
+
+    @Override
+    public Dept getById(Integer id) {
+        return deptMapper.getById(id);
+    }
+
+    @Override
+    public void update(Dept dept) {
+        dept.setUpdateTime(LocalDateTime.now());
+        deptMapper.update(dept);
+    }
 }

@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: tlias_web_mangent
+  datasource:
+    url: jdbc:mysql://localhost:3306/tlias
+    username: root
+    password: root@1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #将MyBatis的SQL日志输出方式配置为控制台输出，通过StdOutImpl实现类将SQL语句直接打印到标准输出流，便于开发调试时查看执行的SQL语句。
+    map-underscore-to-camel-case: true
+
+#设置 Spring JDBC 事务管理器的日志级别为debug
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          support:
+            JdbcTransactionManager: debug
+            
+#自定义参数,阿里云oss
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: java-80-web

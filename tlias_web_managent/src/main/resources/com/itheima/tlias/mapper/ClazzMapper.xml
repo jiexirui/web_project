@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.tlias.mapper.ClazzMapper">
+    <update id="update">
+        update tlias.clazz
+        <set>
+            name = #{name},room = #{room},begin_date = #{beginDate},end_date = #{endDate},master_id =
+            #{masterId},update_time = #{updateTime},update_time = #{updateTime},
+            <if test="subject != null">subject = #{subject}</if>
+        </set>
+        where tlias.clazz.id = #{id}
+    </update>
+
+    <select id="queryClazzListByPage" resultType="com.itheima.tlias.pojo.Clazz">
+        select clazz.*, emp.name as master_name from clazz inner join emp on clazz.master_id = emp.id
+        <where>
+            <if test="name != null and name != ''">and clazz.name like concat('%',#{name},'%')</if>
+            <if test="begin != null and end != null">and clazz.end_date between #{begin} and #{end}</if>
+        </where>
+        order by tlias.clazz.update_time desc
+    </select>
+</mapper>

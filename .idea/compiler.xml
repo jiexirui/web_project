@@ -7,7 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="maven-project02" />
+        <module name="springboot_web" />
         <module name="tlias_web_managent" />
+        <module name="Day06_servlet" />
+        <module name="maven-projectA" />
+        <module name="springboot_web_demo" />
+        <module name="Day04_maven_demo01" />
+        <module name="maven-projectB" />
+        <module name="maven-projectC" />
         <module name="day09word" />
         <module name="springboot-mybatis-homework" />
       </profile>
@@ -16,6 +24,7 @@
       <module name="Day04_maven_demo01" target="17" />
       <module name="Day06_servlet" target="17" />
       <module name="day09_word" target="17" />
+      <module name="day09word (1)" target="17" />
       <module name="jdbc-zy" target="17" />
       <module name="jdbc_demo" target="17" />
       <module name="maven-project02" target="17" />

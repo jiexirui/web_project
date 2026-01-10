@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.tlias.mapper.EmpMapper">
+    <update id="updateById">
+        update emp
+        <set>
+            <if test="username != null and username !=''">username = #{username},</if>
+            <if test="password !=null and password !=''">password = #{password},</if>
+            <if test="name != null and name !=''">name = #{name},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="phone != null and phone !=''">phone = #{phone},</if>
+            <if test="job != null">job = #{job},</if>
+            <if test="salary != null">salary = #{salary},</if>
+            <if test="image != null and image !=''">image = #{image},</if>
+            <if test="entryDate != null">entry_date = #{entryDate},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="updateTime != null">update_time = #{updateTime}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--
+       遍历ids集合，将每个元素作为id变量进行处理，并用逗号分隔，整体包裹在圆括号中
+       参数说明:
+       - item="id": 指定遍历时每个元素的变量名为id
+       - collection="ids": 指定要遍历的集合名称为ids
+       - separator=",": 指定元素之间的分隔符为逗号
+       - open="(": 指定整个遍历结果的开始符号为左圆括号
+       - close=")": 指定整个遍历结果的结束符号为右圆括号
+       -->
+    <delete id="deleteByIds">
+        delete from emp where id in
+        <foreach item="id" collection="ids" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="queryEmpListByPageNew" resultType="com.itheima.tlias.pojo.Emp">
+        select emp.*,dept.name as deptName from emp left join dept on emp.dept_id = dept.id
+        <where>
+            <if test="name != null and name != ''">and emp.name like concat('%',#{name},'%')</if>
+            <if test="gender!= null">and emp.gender = #{gender}</if>
+            <if test=" begin!= null and end!=null ">and between #{begin} and #{end}</if>
+        </where>
+        order by emp.update_time desc
+    </select>
+
+    <resultMap id="empResultMap" type="com.itheima.tlias.pojo.Emp">
+        <!--type：用于<resultMap>标签，指定映射的目标Java类型。在这个例子中，type="com.itheima.tlias.pojo.Emp"表示将查询结果映射到Emp类的实例。-->
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="phone" column="phone"/>
+        <result property="job" column="job"/>
+        <result property="salary" column="salary"/>
+        <result property="image" column="image"/>
+        <result property="entryDate" column="entry_date"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <!--        <result property="deptName" column="deptName"/>-->
+        <!--ofType：用于<collection>标签，指定集合中元素的具体类型。在这个例子中，ofType="com.itheima.tlias.pojo.EmpExpr"表示exprList集合中存储的是EmpExpr对象。-->
+        <collection property="exprList" ofType="com.itheima.tlias.pojo.EmpExpr">
+            <id property="id" column="eeId"/>
+            <result property="begin" column="eeBegin"/>
+            <result property="end" column="eeEnd"/>
+            <result property="company" column="eeCompany"/>
+            <result property="job" column="eeJob"/>
+            <result property="empId" column="eeEmpId"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryById" resultMap="empResultMap">
+        # resultMap属性用于指定一个自定义的结果映射规则，它提供了比resultType更强大的映射功能：
+        select emp.*,
+               emp_expr.id      as eeId,
+               emp_expr.begin   as eeBegin,
+               emp_expr.end     as eeEnd,
+               emp_expr.company as eeCompany,
+               emp_expr.job     as eeJob,
+               emp_expr.emp_id  as eeEmpId
+        from emp
+                 left join emp_expr on emp.id = emp_expr.emp_id
+        where emp.id = #{id}
+    </select>
+
+    <select id="getJobList" resultType="java.util.Map">
+        select (case job
+                    when 1 then '班主任'
+                    when 2 then '讲师'
+                    when 3 then '学工主管'
+                    when 4 then '教研主管'
+                    when 5 then '咨询师'
+                    else '其他' end) pos,
+               count(*)              total
+        from emp
+        group by job;
+    </select>
+
+    <select id="getEmpGenderList" resultType="java.util.Map">
+        select if(gender = 1, '男', '女') name,
+               count(*)                   value
+        from emp
+        group by gender;
+    </select>
+
+    <!--    <update id="update">-->
+    <!--        update tlias.emp-->
+    <!--        <set>-->
+    <!--            username = #{username},name = #{name},gender = #{gender},phone = #{phone},job = #{job},-->
+    <!--            salary = #{salary},image = #{image},entry_date = #{entryDate},dept_id = #{deptId},update_time =-->
+    <!--            #{updateTime},update_time = #{updateTime}-->
+    <!--        </set>-->
+    <!--        where tlias.emp.id = #{id}-->
+    <!--    </update>-->
+</mapper>
